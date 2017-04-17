@@ -1,0 +1,7 @@
+layout_config.settings:
+  path: '/admin/structure/example/settings'
+  defaults:
+    _form: 'Drupal\layout_config\Form\LayoutConfigSettingsForm'
+    _title: 'example'
+  requirements:
+    _permission: 'administer site configuration'

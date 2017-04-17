@@ -1,0 +1,5 @@
+name: Layout Config
+type: module
+description: Configuration form for placing blocks? I hope?
+core: 8.x
+package: Custom
