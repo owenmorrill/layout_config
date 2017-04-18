@@ -33,17 +33,24 @@ class LayoutConfigSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('block.block.searchform_2');
 
-    $form['example_thing'] = array(
-      '#type' => 'textfield',
-      '#title' => $this->t('Things'),
-      '#default_value' => $config->get('things'),
-    );
-
     $form['region'] = array(
       '#type' => 'textfield',
-      '#title' => $this->t('Other things'),
+      '#title' => $this->t('Region'),
       '#default_value' => $config->get('region'),
     );
+
+    $form['visibility'] = array(
+      '#type' => 'fieldset',
+      '#title' => $this->t('Visibility'),
+      //'#default_value' => $config->get('visibility'),
+    );
+
+    $form['visibility']['pages'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Path'),
+      '#default_value' => array_column($config->get('visibility'), 'pages'),
+    );
+    var_dump(array_column($config->get('visibility'), 'pages'));
 
     return parent::buildForm($form, $form_state);
   }
@@ -55,10 +62,8 @@ class LayoutConfigSettingsForm extends ConfigFormBase {
     // Retrieve the configuration
     $this->config('block.block.searchform_2')
     // Set the submitted configuration setting
-    ->set('things', $form_state->getValue('example_thing'))
-    // You can set multiple configurations at once by making
-    // multiple calls to set()
     ->set('region', $form_state->getValue('region'))
+    ->set('request_path', $form_state->getValue('request_path'))
     ->save();
 
     parent::submitForm($form, $form_state);
@@ -82,7 +87,12 @@ a:12:{
   s:8:"provider";N;
   s:6:"plugin";s:17:"search_form_block";
   s:8:"settings";a:4:{s:2:"id";s:17:"search_form_block";s:5:"label";s:11:"Search form";s:8:"provider";s:6:"search";s:13:"label_display";s:7:"visible";}
-  s:10:"visibility";a:1:{s:12:"request_path";a:4:{s:2:"id";s:12:"request_path";s:5:"pages";s:7:"/owen/*";s:6:"negate";b:0;s:15:"context_mapping";a:0:{}}}
+  s:10:"visibility";
+    a:1:{s:12:"request_path";
+      a:4:{s:2:"id";s:12:"request_path";s:5:"pages";s:7:"/owen/*";s:6:"negate";b:0;s:15:"context_mapping";
+        a:0:{}
+      }
+    }
 }
 
 */

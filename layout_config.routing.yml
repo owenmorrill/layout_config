@@ -1,7 +1,7 @@
 layout_config.settings:
-  path: '/admin/structure/example/settings'
+  path: '/node/{nid}/layout'
   defaults:
     _form: 'Drupal\layout_config\Form\LayoutConfigSettingsForm'
-    _title: 'example'
+    _title: 'Edit Layout'
   requirements:
     _permission: 'administer site configuration'
